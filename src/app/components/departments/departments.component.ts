@@ -14,6 +14,27 @@ export class DepartmentsComponent implements OnInit {
 
   validateForm!: FormGroup;
 
+  listOfData: any = [
+    {
+      key: '1',
+      name: 'John Brown',
+      age: 32,
+      address: 'New York No. 1 Lake Park'
+    },
+    {
+      key: '2',
+      name: 'Jim Green',
+      age: 42,
+      address: 'London No. 1 Lake Park'
+    },
+    {
+      key: '3',
+      name: 'Joe Black',
+      age: 32,
+      address: 'Sidney No. 1 Lake Park'
+    }
+  ];
+
   submitForm(): void {
     console.log(this.validateForm.value);
   }
@@ -27,8 +48,8 @@ export class DepartmentsComponent implements OnInit {
       // rangePicker: [[]],
       // rangePickerTime: [[]],
       // timePicker: [null]
-      userName: ['', [Validators.required], [this.userNameAsyncValidator]],
-      email: ['', [Validators.email, Validators.required]],
+      name: ['', [Validators.required], [this.userNameAsyncValidator]],
+      clave: ['', [Validators.required, Validators.required]],
       password: ['', [Validators.required]],
       confirm: ['', [this.confirmValidator]],
       comment: ['', [Validators.required]]
@@ -66,6 +87,7 @@ export class DepartmentsComponent implements OnInit {
   userNameAsyncValidator = (control: FormControl) =>
     new Observable((observer: Observer<ValidationErrors | null>) => {
       setTimeout(() => {
+        console.log("valida name ")
         if (control.value === 'JasonWood') {
           // you have to return `{error: true}` to mark it as an error event
           observer.next({ error: true, duplicated: true });

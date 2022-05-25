@@ -23,6 +23,7 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { NzTimePickerModule } from 'ng-zorro-antd/time-picker';
+import { NzTableModule } from 'ng-zorro-antd/table';
 
 
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -67,7 +68,8 @@ import { AbsencesComponent } from './components/absences/absences.component';
     NzFormModule,
     NzInputModule,
     NzDatePickerModule,
-    NzTimePickerModule
+    NzTimePickerModule,
+    NzTableModule
   ],
   providers: [
     AuthService
