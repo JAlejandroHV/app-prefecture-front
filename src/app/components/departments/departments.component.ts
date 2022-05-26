@@ -16,43 +16,46 @@ export class DepartmentsComponent implements OnInit {
 
   listOfData: any = [
     {
-      key: '1',
-      name: 'John Brown',
-      age: 32,
-      address: 'New York No. 1 Lake Park'
+      key: '110600',
+      name: 'DEPARTAMENTO DE SISTEMAS Y COMPUTACIÓN'
     },
     {
-      key: '2',
-      name: 'Jim Green',
-      age: 42,
-      address: 'London No. 1 Lake Park'
+      key: '110200',
+      name: 'DEPARTAMENTO DE METAL MECÁNICA'
     },
     {
-      key: '3',
-      name: 'Joe Black',
-      age: 32,
-      address: 'Sidney No. 1 Lake Park'
+      key: '110700',
+      name: 'DEPARTAMENTO DE CIENCIAS ECONOMICO ADMINISTRATIVAS'
+    },
+    {
+      key: '110300',
+      name: 'DEPARTAMENTO DE INGENIERÍA INDUSTRIAL'
+    },
+    {
+      key: '110500',
+      name: 'DEPARTAMENTO DE INGENIERIA ELÉCTRICA Y ELECTRÓNICA'
+    },
+    {
+      key: '110100',
+      name: 'DEPARTAMENTO DE CIENCIAS BÁSICAS'
     }
   ];
 
   submitForm(): void {
+    console.log("validando campos de departamentos")
     console.log(this.validateForm.value);
   }
   constructor(private _fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.validateForm = this._fb.group({
-      // datePicker: [null],
-      // datePickerTime: [null],
-      // monthPicker: [null],
-      // rangePicker: [[]],
-      // rangePickerTime: [[]],
-      // timePicker: [null]
-      name: ['', [Validators.required], [this.userNameAsyncValidator]],
-      clave: ['', [Validators.required, Validators.required]],
+      nameDepartment: ['', [Validators.required]],
+      clave: ['', [Validators.required]],
+      email: ['', [Validators.required]],
       password: ['', [Validators.required]],
-      confirm: ['', [this.confirmValidator]],
-      comment: ['', [Validators.required]]
+      confirm: ['', [Validators.required]],
+      nameUser: ['', [Validators.required]],
+      // comment: ['', [Validators.required]]
     });
 
   }
@@ -79,33 +82,33 @@ export class DepartmentsComponent implements OnInit {
     }
   }
 
-  validateConfirmPassword(): void {
-    // setTimeout(() => this.validateForm.controls.controls.updateValueAndValidity);
-  }
+  // validateConfirmPassword(): void {
+  //   // setTimeout(() => this.validateForm.controls.controls.updateValueAndValidity);
+  // }
 
-  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-  userNameAsyncValidator = (control: FormControl) =>
-    new Observable((observer: Observer<ValidationErrors | null>) => {
-      setTimeout(() => {
-        console.log("valida name ")
-        if (control.value === 'JasonWood') {
-          // you have to return `{error: true}` to mark it as an error event
-          observer.next({ error: true, duplicated: true });
-        } else {
-          observer.next(null);
-        }
-        observer.complete();
-      }, 1000);
-    });
+  // // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+  // userNameAsyncValidator = (control: FormControl) =>
+  //   new Observable((observer: Observer<ValidationErrors | null>) => {
+  //     setTimeout(() => {
+  //       console.log("valida name ")
+  //       if (control.value === 'JasonWood') {
+  //         // you have to return `{error: true}` to mark it as an error event
+  //         observer.next({ error: true, duplicated: true });
+  //       } else {
+  //         observer.next(null);
+  //       }
+  //       observer.complete();
+  //     }, 1000);
+  //   });
 
-  confirmValidator = (control: FormControl): { [s: string]: boolean } => {
-    if (!control.value) {
-      return { error: true, required: true };
-    }
-    // } else if (control.value !== this.validateForm.controls.password.value) {
-    //   return { confirm: true, error: true };
-    // }
-    return {};
-  };
+  // confirmValidator = (control: FormControl): { [s: string]: boolean } => {
+  //   if (!control.value) {
+  //     return { error: true, required: true };
+  //   }
+  //   // } else if (control.value !== this.validateForm.controls.password.value) {
+  //   //   return { confirm: true, error: true };
+  //   // }
+  //   return {};
+  // };
 
 }
