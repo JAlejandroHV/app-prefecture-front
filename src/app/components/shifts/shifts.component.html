@@ -1,1 +1,121 @@
-<p>shifts works!</p>
+<button nz-button nzType="primary" (click)="open()">Agregar Turno</button>
+<nz-table #basicTable [nzData]="listOfData">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Clave</th>
+      <!-- <th>Address</th> -->
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of basicTable.data">
+      <td>{{ data.name }}</td>
+      <td>{{ data.key }}</td>
+      <!-- <td>{{ data.address }}</td> -->
+      <td>
+        <a>Action 一 {{ data.name }}</a>
+        <!-- <nz-divider nzType="vertical"></nz-divider> -->
+        <a>Delete</a>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>
+
+
+
+
+
+
+
+
+
+    <nz-drawer
+      [nzClosable]="false"
+      [nzVisible]="visible"
+      nzPlacement="right"
+      nzTitle="Agregar Turno"
+      [nzWidth]="500"
+      (nzOnClose)="close()"
+    >
+      <ng-container *nzDrawerContent>
+        <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+          <!-- <h3>Datos del departamento</h3> -->
+
+          <nz-form-item>
+            <nz-form-label [nzSpan]="7" nzRequired>Nombre </nz-form-label>
+            <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="userErrorTpl">
+              <input nz-input formControlName="name" placeholder="Nombre del Turno" type="text"/>
+              <ng-template #userErrorTpl let-control>
+                <ng-container *ngIf="control.hasError('required')">Por favor ingresa el nombre del Turno!</ng-container>
+              </ng-template>
+            </nz-form-control>
+          </nz-form-item>
+
+
+          <nz-form-item>
+            <nz-form-label [nzSpan]="7" nzRequired>Clave</nz-form-label>
+            <nz-form-control [nzSpan]="12" nzHasFeedback [nzErrorTip]="claveErrorTpl">
+              <input nz-input formControlName="clave" placeholder="Clave" type="text" />
+              <ng-template #claveErrorTpl let-control>
+                <ng-container *ngIf="control.hasError('required')">Por favor ingresa la clave del Turno!</ng-container>
+              </ng-template>
+            </nz-form-control>
+          </nz-form-item>
+
+          <!-- <h3>Jefe de departamento</h3>
+
+          <nz-form-item>
+            <nz-form-label [nzSpan]="7" nzRequired>Nombre </nz-form-label>
+            <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="nameErrorTpl">
+              <input nz-input formControlName="nameUser" placeholder="Ingrese Nombre" />
+              <ng-template #nameErrorTpl let-control>
+                <ng-container *ngIf="control.hasError('required')">Por favor ingresa el nombre!</ng-container>
+              </ng-template>
+            </nz-form-control>
+          </nz-form-item>
+
+          <nz-form-item>
+            <nz-form-label [nzSpan]="7" nzRequired>Email </nz-form-label>
+            <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="emailErrorTpl">
+              <input nz-input formControlName="email" placeholder="Ingrese Nombre" />
+              <ng-template #emailErrorTpl let-control>
+                <ng-container *ngIf="control.hasError('required')">Por favor ingresa el email!</ng-container>
+              </ng-template>
+            </nz-form-control>
+          </nz-form-item>
+
+
+          <nz-form-item>
+            <nz-form-label [nzSpan]="7" nzRequired>Password</nz-form-label>
+            <nz-form-control [nzSpan]="12" nzHasFeedback [nzErrorTip]="passErrorTpl">
+              <input nz-input type="password" formControlName="password" placeholder="Ingresa contraseña"/>
+              <ng-template #passErrorTpl let-control>
+                <ng-container *ngIf="control.hasError('required')">Ingresa una contraseña valida!</ng-container>
+              </ng-template>
+            </nz-form-control>
+          </nz-form-item> -->
+
+
+          <!-- <nz-form-item>
+            <nz-form-label [nzSpan]="7" nzRequired>Confirm Password</nz-form-label>
+            <nz-form-control [nzSpan]="12" nzHasFeedback [nzErrorTip]="passwordErrorTpl">
+              <input nz-input type="password" formControlName="confirm" placeholder="Confirma contraseña" />
+              <ng-template #passwordErrorTpl let-control>
+                <ng-container *ngIf="control.hasError('required')">Algo salio mal, confirma la contraseña!</ng-container>
+              </ng-template>
+            </nz-form-control>
+          </nz-form-item> -->
+
+
+          <nz-form-item>
+            <nz-form-control [nzOffset]="7" [nzSpan]="12">
+              <button nz-button nzType="primary" [disabled]="!validateForm.valid">Guardar</button>
+              <button nz-button (click)="resetForm($event)">Reset</button>
+            </nz-form-control>
+          </nz-form-item>
+
+
+        </form>
+      </ng-container>
+    </nz-drawer>
