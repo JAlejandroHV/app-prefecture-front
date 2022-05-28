@@ -8,6 +8,8 @@ import { AppComponent } from './app.component';
 import { AuthService } from './services/auth.service';
 
 import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
+import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 import { NzLayoutModule } from  'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzGridModule} from 'ng-zorro-antd/grid';
@@ -35,6 +37,8 @@ import { CareersComponent } from './components/careers/careers.component';
 import { BuildingsComponent } from './components/buildings/buildings.component';
 import { GroupsComponent } from './components/groups/groups.component';
 import { AbsencesComponent } from './components/absences/absences.component';
+
+import { NzMessageModule } from 'ng-zorro-antd/message';
 
 @NgModule({
   declarations: [
@@ -69,7 +73,10 @@ import { AbsencesComponent } from './components/absences/absences.component';
     NzInputModule,
     NzDatePickerModule,
     NzTimePickerModule,
-    NzTableModule
+    NzTableModule,
+    NzToolTipModule,
+    NzPopconfirmModule,
+    NzMessageModule
   ],
   providers: [
     AuthService

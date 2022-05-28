@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ValidationErrors, Validators  } from '@angular/forms';
 import { NzRangePickerComponent } from 'ng-zorro-antd/date-picker';
 import { Observable, Observer } from 'rxjs';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 
 @Component({
@@ -57,7 +58,8 @@ export class CareersComponent implements OnInit {
     console.log("validando campos de departamentos")
     console.log(this.validateForm.value);
   }
-  constructor(private _fb: FormBuilder) { }
+  constructor(private _fb: FormBuilder,
+    private nzMessageService: NzMessageService) { }
 
   ngOnInit(): void {
     this.validateForm = this._fb.group({
@@ -92,6 +94,13 @@ export class CareersComponent implements OnInit {
         this.validateForm.controls[key].updateValueAndValidity();
       }
     }
+  }
+  cancel(): void {
+    // this.nzMessageService.info('click cancel');
+  }
+
+  confirm(): void {
+    // this.nzMessageService.info('click confirm');
   }
 
   // validateConfirmPassword(): void {

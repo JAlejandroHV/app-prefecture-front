@@ -14,9 +14,21 @@
       <td>{{ data.key }}</td>
       <!-- <td>{{ data.address }}</td> -->
       <td>
-        <a>Action 一 {{ data.name }}</a>
-        <!-- <nz-divider nzType="vertical"></nz-divider> -->
-        <a>Delete</a>
+        <!-- <a>Action 一 {{ data.name }}</a>
+        <a>Delete</a> -->
+        <!-- [nzSize]="size" nzType="primary" nzType="primary" nzPrimary  nzShape="circle"-->
+         <!-- nzTooltipTitle="Eliminar Registro" nz-tooltip nzDanger  nzShape="circle" -->
+        <button nz-button  nzTooltipTitle="Editar Registro"   nz-tooltip 
+       
+        ><i nz-icon nzType="edit" nzTheme="outline"></i></button>
+        <button nz-button   
+       nzDanger
+        nz-popconfirm
+        nzPopconfirmTitle="Are you sure delete this task?"
+        (nzOnConfirm)="confirm()"
+        (nzOnCancel)="cancel()"
+        nzPopconfirmPlacement="topLeft"
+        ><i nz-icon nzType="delete" nzTheme="outline"></i></button>
       </td>
     </tr>
   </tbody>
