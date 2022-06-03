@@ -1,1 +1,107 @@
-<p>buildings works!</p>
+<button nz-button nzType="primary" (click)="open()">Agregar Edificios</button>
+<nz-table #basicTable [nzData]="listOfData">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Clave</th>
+      <!-- <th>Address</th> -->
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of basicTable.data">
+      <td>{{ data.name }}</td>
+      <td>{{ data.key }}</td>
+      <!-- <td>{{ data.address }}</td> -->
+      <td>
+        <!-- <a>Action 一 {{ data.name }}</a>
+        <a>Delete</a> -->
+        <!-- [nzSize]="size" nzType="primary" nzType="primary" nzPrimary  nzShape="circle"-->
+         <!-- nzTooltipTitle="Eliminar Registro" nz-tooltip nzDanger  nzShape="circle" -->
+        <button 
+        nz-button  
+        nzTooltipTitle="Editar Registro"   
+        nz-tooltip 
+        nzTooltipPlacement="left"
+        >
+            <i 
+            nz-icon 
+            nzType="edit" 
+            nzTheme="outline"
+            >
+            </i>
+        </button>
+
+        <button nz-button   
+        nzDanger
+        nz-popconfirm
+        nzPopconfirmTitle="Are you sure delete this task?"
+        (nzOnConfirm)="confirm()"
+        (nzOnCancel)="cancel()"
+        nzPopconfirmPlacement="bottomLeft"
+        ><i nz-icon nzType="delete" nzTheme="outline"></i></button>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>
+
+    <nz-drawer
+      [nzClosable]="false"
+      [nzVisible]="visible"
+      nzPlacement="right"
+      nzTitle="Agregar Edificios"
+      [nzWidth]="600"
+      (nzOnClose)="close()"
+    >
+      <ng-container *nzDrawerContent>
+        <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+
+          <nz-form-item>
+            <nz-form-label [nzSpan]="7" nzRequired>Nombre </nz-form-label>
+            <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="userErrorTpl">
+              <input nz-input formControlName="name" placeholder="Nombre del departamento" />
+              <ng-template #userErrorTpl let-control>
+                <ng-container *ngIf="control.hasError('required')">Por favor ingresa el nombre del departamento!</ng-container>
+              </ng-template>
+            </nz-form-control>
+          </nz-form-item>
+
+
+          <nz-form-item>
+            <nz-form-label [nzSpan]="7" nzRequired>Clave</nz-form-label>
+            <nz-form-control [nzSpan]="12" nzHasFeedback [nzErrorTip]="claveErrorTpl">
+              <input nz-input formControlName="clave" placeholder="Clave" type="text" />
+              <ng-template #claveErrorTpl let-control>
+                <ng-container *ngIf="control.hasError('required')">Por favor ingresa la clave del departamento!</ng-container>
+              </ng-template>
+            </nz-form-control>
+          </nz-form-item>
+<!-- 
+          <nz-form-item>
+            <nz-form-label [nzSpan]="7" nzRequired>Turnos</nz-form-label>
+            <nz-form-control [nzSpan]="12" nzHasFeedback [nzErrorTip]="claveErrorTpl">
+          <nz-select 
+            [nzMaxTagCount]="1"
+            [nzMaxTagPlaceholder]="tagPlaceHolder"
+            nzMode="multiple"
+            nzPlaceHolder="Please select"
+            formControlName="turnos"
+          >
+            <nz-option  nzLabel="Matutino" nzValue="Matutino"></nz-option>
+            <nz-option  nzLabel="Vespertino" nzValue="Vespertino"></nz-option>
+          </nz-select>
+          <ng-template #tagPlaceHolder let-selectedList>y {{ selectedList.length }} más ...</ng-template>
+        </nz-form-control>
+        </nz-form-item> -->
+
+          <nz-form-item>
+            <nz-form-control [nzOffset]="7" [nzSpan]="12">
+              <button nz-button nzType="primary" [disabled]="!validateForm.valid">Guardar</button>
+              <button nz-button (click)="resetForm($event)">Reset</button>
+            </nz-form-control>
+          </nz-form-item>
+
+
+        </form>
+      </ng-container>
+    </nz-drawer>

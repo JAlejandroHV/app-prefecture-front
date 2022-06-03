@@ -20,6 +20,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { IconsProviderModule } from './icons-provider/icons-provider.module';
 import { FormsModule } from '@angular/forms'
 import { ReactiveFormsModule } from '@angular/forms';
+import { NzSelectModule } from 'ng-zorro-antd/select';
 
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
@@ -76,7 +77,8 @@ import { NzMessageModule } from 'ng-zorro-antd/message';
     NzTableModule,
     NzToolTipModule,
     NzPopconfirmModule,
-    NzMessageModule
+    NzMessageModule,
+    NzSelectModule
   ],
   providers: [
     AuthService

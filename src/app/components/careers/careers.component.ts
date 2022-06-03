@@ -63,12 +63,9 @@ export class CareersComponent implements OnInit {
 
   ngOnInit(): void {
     this.validateForm = this._fb.group({
-      nameDepartment: ['', [Validators.required]],
+      name: ['', [Validators.required]],
       clave: ['', [Validators.required]],
-      email: ['', [Validators.required]],
-      password: ['', [Validators.required]],
-      confirm: ['', [Validators.required]],
-      nameUser: ['', [Validators.required]],
+      turnos: this._fb.array([]),
       // comment: ['', [Validators.required]]
     });
 
@@ -96,39 +93,11 @@ export class CareersComponent implements OnInit {
     }
   }
   cancel(): void {
-    // this.nzMessageService.info('click cancel');
+    this.nzMessageService.info('click cancel');
   }
 
   confirm(): void {
-    // this.nzMessageService.info('click confirm');
+    this.nzMessageService.info('click confirm');
   }
 
-  // validateConfirmPassword(): void {
-  //   // setTimeout(() => this.validateForm.controls.controls.updateValueAndValidity);
-  // }
-
-  // // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-  // userNameAsyncValidator = (control: FormControl) =>
-  //   new Observable((observer: Observer<ValidationErrors | null>) => {
-  //     setTimeout(() => {
-  //       console.log("valida name ")
-  //       if (control.value === 'JasonWood') {
-  //         // you have to return `{error: true}` to mark it as an error event
-  //         observer.next({ error: true, duplicated: true });
-  //       } else {
-  //         observer.next(null);
-  //       }
-  //       observer.complete();
-  //     }, 1000);
-  //   });
-
-  // confirmValidator = (control: FormControl): { [s: string]: boolean } => {
-  //   if (!control.value) {
-  //     return { error: true, required: true };
-  //   }
-  //   // } else if (control.value !== this.validateForm.controls.password.value) {
-  //   //   return { confirm: true, error: true };
-  //   // }
-  //   return {};
-  // };
 }
